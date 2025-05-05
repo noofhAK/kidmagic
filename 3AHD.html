@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>3AHD</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background-image: url('background.jpg');
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+    }
+
+    .welcome-container,
+    .form-container,
+    .themes-container {
+      max-width: 500px;
+      margin: 60px auto;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+
+    .logo {
+      width: 400px;
+      margin-bottom: 20px;
+    }
+
+    .welcome-text {
+      font-size: 24px;
+      margin: 10px 0;
+      white-space: nowrap;
+    }
+
+    .pink-text { color: #f48fb1; }
+    .blue-text { color: #64b5f6; }
+
+    label {
+      display: block;
+      text-align: right;
+      margin: 10px 0 5px;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    .next-button,
+    .select-button {
+      margin-top: 10px;
+      padding: 10px 25px;
+      font-size: 16px;
+      background-color: #64b5f6;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .next-button:hover,
+    .select-button:hover {
+      background-color: #42a5f5;
+    }
+
+    .theme-card {
+      display: flex;
+      align-items: center;
+      margin-bottom: 40px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 15px;
+    }
+
+    .theme-card img {
+      width: 200px;
+      height: 200px;
+      border-radius: 10px;
+      margin-left: 15px;
+      object-fit: cover;
+    }
+
+    .theme-info {
+      flex: 1;
+      text-align: right;
+    }
+
+    .theme-name {
+      font-size: 25px;
+      font-weight: bold;
+      color: #f48fb1;
+      margin: 0;
+    }
+
+    .theme-price {
+      margin: 10px 0;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+
+  <section id="welcome" class="welcome-container">
+    <img src="logo.jpg" alt="3AHD" class="logo">
+    <div class="welcome-text pink-text">أهـــــلاً بــكــم فــي مــوقــعــنا!</div>
+    <div class="welcome-text blue-text">عدسـة تـنـبـض حــباً…تـوثـق لـحـظـات لا تـنـسـى مـن بـراءة طـفـلـك</div>
+    <button class="next-button" onclick="goToNext()">التــالــي</button>
+  </section>
+
+  
+  <section id="registration" style="display: none;">
+    <div class="form-container">
+      <h2 class="blue-text">مـعـلـومـات الحـجـز</h2>
+      <form id="registerForm">
+        <label for="parentName">اسم ولي الأمر:</label>
+        <input type="text" id="parentName" name="parentName" required>
+
+        <label for="childName">اسم الطفل:</label>
+        <input type="text" id="childName" name="childName" required>
+
+        <label for="childAge">العمر:</label>
+        <input type="number" id="childAge" name="childAge" min="1" max="15" required>
+
+        <label for="phone">رقم الهاتف النقال:</label>
+        <input type="tel" id="phone" name="phone" required pattern="[0-9]{8,15}">
+
+        <button type="button" class="next-button" onclick="goToTheme()">التــالــي</button>
+      </form>
+    </div>
+  </section>
+
+  
+  <section id="themes" style="display: none;">
+    <div class="themes-container">
+      <h2 class="blue-text">اخـتـر الـثـيـم المـفـضـل لـطـفـلـك</h2>
+
+      <div class="theme-card">
+        <img src="theme1.jpg" alt="ثيم رحلة ناعمة">
+        <div class="theme-info">
+          <p class="theme-name"> ثيم رحلة ناعمة </p>
+          <p class="theme-price">السعر: 25 ريال</p>
+          <button onclick="selectTheme(' ثيم رحلة ناعمة')" class="select-button">اختيار</button>
+        </div>
+      </div>
+
+      <div class="theme-card">
+        <img src="theme2.jpg" alt="ثيم البحار الصغير ">
+        <div class="theme-info">
+          <p class="theme-name">ثيم البحار الصغير</p>
+          <p class="theme-price">السعر: 25 ريال</p>
+          <button onclick="selectTheme('ثيم البحار الصغير')" class="select-button">اختيار</button>
+        </div>
+      </div>
+
+      <div class="theme-card">
+        <img src="theme3.jpg" alt="ثيم ارجوحة السلام">
+        <div class="theme-info">
+          <p class="theme-name">ثيم ارجوحة السلام</p>
+          <p class="theme-price">السعر: 20 ريال</p>
+          <button onclick="selectTheme('ثيم ارجوحة السلام')" class="select-button">اختيار</button>
+        </div>
+      </div>
+
+      <div class="theme-card">
+        <img src="theme4.jpg" alt="ثيم حكاية البنفسج">
+        <div class="theme-info">
+          <p class="theme-name">ثيم حكاية البنفسج</p>
+          <p class="theme-price">السعر: 25 ريال</p>
+          <button onclick="selectTheme('ثيم حكاية البنفسج')" class="select-button">اختيار</button>
+        </div>
+      </div>
+
+      <div class="theme-card">
+        <img src="theme5.jpg" alt="ثيم حلم ملكي">
+        <div class="theme-info">
+          <p class="theme-name">ثيم حلم ملكي</p>
+          <p class="theme-price">السعر: 25 ريال</p>
+          <button onclick="selectTheme('ثيم حلم ملكي')" class="select-button">اختيار</button>
+        </div>
+      </div>
+
+      <div class="theme-card">
+        <img src="theme6.jpg" alt="ثيم عالم فوق السحاب">
+        <div class="theme-info">
+          <p class="theme-name">ثيم عالم فوق السحاب</p>
+          <p class="theme-price">السعر: 25 ريال</p>
+          <button onclick="selectTheme('ثيم عالم فوق السحاب')" class="select-button">اختيار</button>
+        </div>
+      </div>
+
+      <div class="theme-card">
+        <img src="theme7.jpg" alt="ثيم فاشن بيبي">
+        <div class="theme-info">
+          <p class="theme-name">ثيم فاشن بيبي</p>
+          <p class="theme-price">السعر: 25 ريال</p>
+          <button onclick="selectTheme('ثيم فاشن بيبي')" class="select-button">اختيار</button>
+        </div>
+      </div>
+
+      <div class="theme-card">
+        <img src="theme8.jpg" alt="ثيم لمسة أرجوانية">
+        <div class="theme-info">
+          <p class="theme-name">ثيم لمسة أرجوانية</p>
+          <p class="theme-price">السعر: 25 ريال</p>
+          <button onclick="selectTheme('ثيم لمسة أرجوانية')" class="select-button">اختيار</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <section id="datetime" style="display: none;">
+    <div class="form-container">
+      <h2 class="blue-text">حدد التاريخ والوقت</h2>
+
+      <label for="date">اختر التاريخ:</label>
+      <input type="date" id="date" name="date" required>
+
+      <label for="time">اختر الوقت:</label>
+      <select id="time" name="time" required>
+        <option value="">-- اختر الوقت --</option>
+        <option value="10:00">10:00 صباحًا</option>
+        <option value="12:00">12:00 ظهرًا</option>
+        <option value="14:00">2:00 مساءً</option>
+        <option value="16:00">4:00 مساءً</option>
+        <option value="18:00">6:00 مساءً</option>
+      </select>
+
+      <button class="next-button" onclick="goToPayment()">التــالــي</button>
+    </div>
+  </section>
+
+  
+  <section id="payment" style="display: none;">
+    <div class="form-container">
+      <h2 class="blue-text">خـيـارات الـدفـع</h2>
+
+      <p class="pink-text">يـمـكـنـك الـدفـع عـبـر الـبـاركـود الـتـالـي:</p>
+      <img src="barcode.jpg" alt="رمز QR للدفع" style="width: 200px; margin-bottom: 20px;">
+
+      <p>أو الـتـحـويـل عـلـى الـرقـم:</p>
+      <p style="font-size: 20px; font-weight: bold;">96016613</p>
+
+      <button class="next-button" onclick="goToConfirm()">التالي</button>
+    </div>
+  </section>
+
+  
+  <section id="confirmation" style="display: none;">
+    <div class="form-container">
+      <img src="thankyou.jpg" alt="تم الحجز بنجاح" style="width: 150px; margin-bottom: 20px;">
+      <h2 class="pink-text">تم الحجز بنجاح!</h2>
+
+      <p>شـكـراً لاخـتـيـاركـم لنا  <br>
+ثـقـتـكـم هـي سـر تـمـيـزنـا.</p>
+      <p id="finalTheme" class="blue-text" style="font-size: 18px; margin-top: 15px;"></p>
+
+      <p>لـلـتـواصـل و الاسـتـفـسـار :</p>
+      <p>الـهـاتـف:96016609 </p>
+      <p>انـسـتـجـرام: <a href="https://instagram.com/kidmagic8" target="_blank">@kidmagic8</a></p>
+
+      <p style="margin-top: 20px;">نـتـمـنـى لـكـم يـومـاً رائـعـاً و مـمـيـزاً</p>
+
+      <button class="next-button" onclick="finishBooking()">إنهاء</button>
+    </div>
+  </section>
+
+  <script>
+    let selectedTheme = "";
+
+    function goToNext() {
+      document.getElementById("welcome").style.display = "none";
+      document.getElementById("registration").style.display = "block";
+    }
+
+    function goToTheme() {
+      document.getElementById("registration").style.display = "none";
+      document.getElementById("themes").style.display = "block";
+    }
+
+    function selectTheme(themeName) {
+      selectedTheme = themeName;
+      alert("تم اختيار: " + themeName);
+      goToDateTime();
+    }
+
+    function goToDateTime() {
+      document.getElementById("themes").style.display = "none";
+      document.getElementById("datetime").style.display = "block";
+    }
+
+    function goToPayment() {
+      document.getElementById("datetime").style.display = "none";
+      document.getElementById("payment").style.display = "block";
+    }
+
+    function goToConfirm() {
+      document.getElementById("payment").style.display = "none";
+      document.getElementById("confirmation").style.display = "block";
+      document.getElementById("finalTheme").innerText = "الثيم المختار: " + selectedTheme;
+    }
+
+    function finishBooking() {
+      window.location.href = "index.html";
+    }
+  </script>
+
+</body>
+</html>
